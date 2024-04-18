@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import type { ResponseData } from "@types";
 
-import { Table, VerticalTabs } from "@components";
-import { Box, Container } from "@mui/material";
+import { Button, Table, VerticalTabs } from "@components";
+import { Box, Container, Grid } from "@mui/material";
 import type { GridColDef } from "@mui/x-data-grid";
 
 const reportsColumns: GridColDef<ResponseData>[] = [
@@ -37,32 +37,41 @@ function App() {
 	const tableData = reports.map((entry, idx) => ({ ...entry, id: idx }));
 
 	return (
-		<Box
-			sx={{
-				width: "100%",
-				height: "100%",
-			}}
-		>
-			<Container maxWidth={false}>
-				<VerticalTabs
-					panels={[
-						{
-							element: (
-								<Table
-									data={tableData}
-									columns={reportsColumns}
-								/>
-							),
-							name: "Reports",
-						},
-						{
-							element: "Available templates: 0",
-							name: "Templates",
-						},
-					]}
-				/>
-			</Container>
-		</Box>
+		<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+			<Box
+				sx={{
+					width: "100%",
+					height: "100%",
+					padding: "20px",
+					boxSizing: "border-box",
+				}}
+			>
+				<Grid item xs={12} sx={{ mb: 3 }}>
+					<Container maxWidth={false}>
+						<Button items={["Add", "Add Template"]}>Add</Button>
+					</Container>
+				</Grid>
+				<Grid item xs={12}>
+					<VerticalTabs
+						panels={[
+							{
+								element: (
+									<Table
+										data={tableData}
+										columns={reportsColumns}
+									/>
+								),
+								name: "Reports",
+							},
+							{
+								element: "Available templates: 0",
+								name: "Templates",
+							},
+						]}
+					/>
+				</Grid>
+			</Box>
+		</Grid>
 	);
 }
 

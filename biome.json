@@ -37,9 +37,7 @@
 		"indentWidth": 4,
 		"lineWidth": 80,
 		"lineEnding": "lf",
-		"ignore": [
-			"node_modules"
-		]
+		"ignore": ["node_modules"]
 	},
 	"javascript": {
 		"formatter": {
